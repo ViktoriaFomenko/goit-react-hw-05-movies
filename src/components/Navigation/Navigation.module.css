@@ -1,0 +1,26 @@
+.container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation_list {
+  list-style: none;
+  display: flex;
+}
+
+.link {
+  display: inline-block;
+  padding: 10px 10px;
+  background-color: rgb(184, 201, 203);
+  color: rgb(255, 254, 254);
+  text-decoration: none;
+  font-size: 18px;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  border-radius: 25px;
+}
+
+.link.active {
+  background-color: rgb(12, 236, 210);
+}
