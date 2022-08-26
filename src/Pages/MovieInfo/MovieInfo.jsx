@@ -5,7 +5,7 @@ import { FetchMovieInfo } from 'APIServise';
 
 export const MovieInfo = () => {
   const [state, setState] = useState({
-    items: {},
+    items: [],
     loading: false,
     error: null,
   });
@@ -23,7 +23,7 @@ export const MovieInfo = () => {
         const data = await FetchMovieInfo(id);
         setState(prevState => ({
           ...prevState,
-          items: data.results,
+          items: [data],
         }));
       } catch (error) {
         setState(prevState => ({
@@ -47,10 +47,13 @@ export const MovieInfo = () => {
 
   return (
     <div className="container">
-      {/* <ul>
+      <ul>
         {items.map(item => (
           <li key={id}>
-            <img src={item.poster_path} alt={item.title} />
+            <img
+              src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+              alt={item.title}
+            />
             <h2>{item.title}</h2>
             <p>User score:{item.vote_average}</p>
             <h3>Overview</h3>
@@ -59,7 +62,7 @@ export const MovieInfo = () => {
             <p> {item.genres.map(item => item.name)}</p>
           </li>
         ))}
-      </ul> */}
+      </ul>
     </div>
   );
 };
