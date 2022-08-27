@@ -5,7 +5,7 @@ import { FetchTrending } from 'APIServise';
 import { Loader } from 'components/Loader/Loader';
 import { MovieList } from 'components/MovieList/MovieList';
 
-export const Home = () => {
+const Home = () => {
   const [state, setState] = useState({
     items: [],
     loading: false,
@@ -45,7 +45,7 @@ export const Home = () => {
     };
 
     Trending();
-  }, [setState]);
+  }, []);
 
   const { items, loading, error } = state;
 
@@ -64,3 +64,4 @@ export const Home = () => {
     </div>
   );
 };
+export default Home;

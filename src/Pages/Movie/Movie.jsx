@@ -5,7 +5,7 @@ import { SearchMovie } from 'APIServise';
 import { MovieList } from 'components/MovieList/MovieList';
 import { Loader } from 'components/Loader/Loader';
 
-export const Movie = () => {
+const Movie = () => {
   const [state, setState] = useState({
     items: [],
     loading: false,
@@ -62,3 +62,5 @@ export const Movie = () => {
     </div>
   );
 };
+
+export default Movie;

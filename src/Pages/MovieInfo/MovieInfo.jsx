@@ -1,15 +1,25 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  Link,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 
 import { FetchMovieInfo } from 'APIServise';
 
-export const MovieInfo = () => {
+const MovieInfo = () => {
   const [state, setState] = useState({
     items: [],
     loading: false,
     error: null,
   });
   const { id } = useParams();
+  const navigate = useNavigate();
+  const goBack = () => navigate(from);
+  const location = useLocation();
+  const from = location.state?.from || '/movies';
 
   useEffect(() => {
     const SingleMovieInfo = async () => {
@@ -23,7 +33,7 @@ export const MovieInfo = () => {
         const data = await FetchMovieInfo(id);
         setState(prevState => ({
           ...prevState,
-          items: [data],
+          items: [...prevState.items, data],
         }));
       } catch (error) {
         setState(prevState => ({
@@ -47,6 +57,7 @@ export const MovieInfo = () => {
 
   return (
     <div className="container">
+      <button onClick={goBack}>Go back</button>
       <ul>
         {items.map(item => (
           <li key={id}>
@@ -55,7 +66,7 @@ export const MovieInfo = () => {
               alt={item.title}
             />
             <h2>{item.title}</h2>
-            <p>User score:{item.vote_average}</p>
+            <p>User score: {item.vote_average}</p>
             <h3>Overview</h3>
             <p>{item.overview}</p>
             <h3>Genres</h3>
@@ -63,6 +74,12 @@ export const MovieInfo = () => {
           </li>
         ))}
       </ul>
+      <Link state={{ from }} to={`/movies/${id}/cast`}>
+        Cast
+      </Link>
+      <Outlet />
+      {/* <Link to={`/movies/${id}/reviews`}>Reviews</Link> */}
     </div>
   );
 };
+export default MovieInfo;

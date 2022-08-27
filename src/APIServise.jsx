@@ -21,3 +21,17 @@ export async function SearchMovie(query) {
   const { data } = await axios.get(URL);
   return data;
 }
+
+export async function MovieCast(id) {
+  const URL = `${BASE_URL}/movie/${id}/credits?api_key=${KEY}&language=en-US&include_adult=false`;
+
+  const { data } = await axios.get(URL);
+  return data;
+}
+
+export async function MovieReviews(id) {
+  const URL = `${BASE_URL}/movie/${id}/reviews?api_key=${KEY}&language=en-US&include_adult=false`;
+
+  const { data } = await axios.get(URL);
+  return data;
+}
