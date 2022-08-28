@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { MovieCast } from 'APIServise';
 import no_image from '../../images/No_Image_Available.jpg';
+import css from '../MovieInfo/MovieInfoCast.module.css';
 
 const MovieInfoCast = () => {
   const [state, setState] = useState({
@@ -49,10 +50,11 @@ const MovieInfoCast = () => {
 
   return (
     <div className="container">
-      <ul>
+      <ul className={css.list}>
         {items.map(item => (
-          <li key={id}>
+          <li className={css.item} key={id}>
             <img
+              className={css.img}
               width="150px"
               src={
                 item.profile_path
@@ -61,8 +63,8 @@ const MovieInfoCast = () => {
               }
               alt={item.name}
             />
-            <p>{item.name}</p>
-            <p>Character: {item.character}</p>
+            <p className={css.name}>{item.name}</p>
+            <p className={css.character}>Character: {item.character}</p>
           </li>
         ))}
       </ul>

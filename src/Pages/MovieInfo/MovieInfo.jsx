@@ -9,6 +9,7 @@ import {
 
 import { FetchMovieInfo } from 'APIServise';
 import no_poster from '../../images/no-poster-available.jpg';
+import css from '../MovieInfo/MovieInfo.module.css';
 
 const MovieInfo = () => {
   const [state, setState] = useState({
@@ -57,8 +58,10 @@ const MovieInfo = () => {
   const { items } = state;
 
   return (
-    <div className="container">
-      <button onClick={goBack}>Go back</button>
+    <div className={css.container_movie}>
+      <button className={css.btn} onClick={goBack}>
+        Go back
+      </button>
       <ul>
         {items.map(item => (
           <li key={id}>
@@ -72,18 +75,23 @@ const MovieInfo = () => {
               alt={item.title}
             />
             <h2>{item.title}</h2>
-            <p>User score: {Math.round((item.vote_average / 10) * 100)}%</p>
+            <p className={css.score}>
+              User score: {Math.round((item.vote_average / 10) * 100)}%
+            </p>
             <h3>Overview</h3>
-            <p>{item.overview}</p>
+            <p className={css.overview}>{item.overview}</p>
             <h3>Genres</h3>
-            <p> {item.genres.map(item => item.name).join(', ')}</p>
+            <p className={css.genres}>
+              {' '}
+              {item.genres.map(item => item.name).join(', ')}
+            </p>
           </li>
         ))}
       </ul>
-      <Link state={{ from }} to={`/movies/${id}/cast`}>
+      <Link className={css.link} state={{ from }} to={`/movies/${id}/cast`}>
         Cast
       </Link>
-      <Link state={{ from }} to={`/movies/${id}/reviews`}>
+      <Link className={css.link} state={{ from }} to={`/movies/${id}/reviews`}>
         Reviews
       </Link>
       <Outlet />
