@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { FetchMovieInfo } from 'APIServise';
+import no_poster from '../../images/no-poster-available.jpg';
 
 const MovieInfo = () => {
   const [state, setState] = useState({
@@ -62,23 +63,30 @@ const MovieInfo = () => {
         {items.map(item => (
           <li key={id}>
             <img
-              src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+              width="300px"
+              src={
+                item.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+                  : no_poster
+              }
               alt={item.title}
             />
             <h2>{item.title}</h2>
-            <p>User score: {item.vote_average}</p>
+            <p>User score: {Math.round((item.vote_average / 10) * 100)}%</p>
             <h3>Overview</h3>
             <p>{item.overview}</p>
             <h3>Genres</h3>
-            <p> {item.genres.map(item => item.name)}</p>
+            <p> {item.genres.map(item => item.name).join(', ')}</p>
           </li>
         ))}
       </ul>
       <Link state={{ from }} to={`/movies/${id}/cast`}>
         Cast
       </Link>
+      <Link state={{ from }} to={`/movies/${id}/reviews`}>
+        Reviews
+      </Link>
       <Outlet />
-      {/* <Link to={`/movies/${id}/reviews`}>Reviews</Link> */}
     </div>
   );
 };

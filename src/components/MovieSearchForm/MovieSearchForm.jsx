@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FiSearch } from 'react-icons/fi';
 
 export const MovieSearchForm = ({ onSubmit }) => {
   const [state, setState] = useState({
@@ -30,7 +31,9 @@ export const MovieSearchForm = ({ onSubmit }) => {
         placeholder="Search movie"
         required
       />
-      <button type="submit">Search</button>
+      <button type="submit">
+        <FiSearch size="12px" />
+      </button>
     </form>
   );
 };

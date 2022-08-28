@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { MovieCast } from 'APIServise';
+import no_image from '../../images/No_Image_Available.jpg';
 
 const MovieInfoCast = () => {
   const [state, setState] = useState({
@@ -20,10 +21,12 @@ const MovieInfoCast = () => {
         }));
 
         const data = await MovieCast(id);
+        console.log(data);
         setState(prevState => ({
           ...prevState,
-          items: [...prevState.items, data],
+          items: data.cast,
         }));
+        console.log(data.cast);
       } catch (error) {
         setState(prevState => ({
           ...prevState,
@@ -49,7 +52,15 @@ const MovieInfoCast = () => {
       <ul>
         {items.map(item => (
           <li key={id}>
-            <img src={item.profile_path} alt={item.name} />
+            <img
+              width="150px"
+              src={
+                item.profile_path
+                  ? `https://image.tmdb.org/t/p/w500${item.profile_path}`
+                  : no_image
+              }
+              alt={item.name}
+            />
             <p>{item.name}</p>
             <p>Character: {item.character}</p>
           </li>

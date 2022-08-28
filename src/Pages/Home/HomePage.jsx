@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
 
 import { FetchTrending } from 'APIServise';
 import { Loader } from 'components/Loader/Loader';
@@ -48,12 +47,6 @@ const Home = () => {
   }, []);
 
   const { items, loading, error } = state;
-
-  //   const elements = items.map(({ id, title }) => (
-  //     <li key={id}>
-  //       <Link to={`/movies/${id}`}>{title}</Link>
-  //     </li>
-  //   ));
 
   return (
     <div>
