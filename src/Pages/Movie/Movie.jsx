@@ -58,7 +58,7 @@ const Movie = () => {
       <MovieSearchForm onSubmit={changeSearch} />
       {items.length > 0 && <MovieList items={items} />}
       {loading && <Loader />}
-      {error && <p>...Movies load failed</p>}
+      {error && <p>Load failed...</p>}
     </div>
   );
 };

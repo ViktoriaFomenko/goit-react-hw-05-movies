@@ -52,7 +52,7 @@ const MovieInfoCast = () => {
     <div className="container">
       <ul className={css.list}>
         {items.map(item => (
-          <li className={css.item} key={id}>
+          <li className={css.item} key={item.id}>
             <img
               className={css.img}
               width="150px"

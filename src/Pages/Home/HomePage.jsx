@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { FetchTrending } from 'APIServise';
 import { Loader } from 'components/Loader/Loader';
 import { MovieList } from 'components/MovieList/MovieList';
+import css from '../Home/HomePage.module.css';
 
 const Home = () => {
   const [state, setState] = useState({
@@ -50,10 +51,10 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Top-20 today</h2>
+      <h2 className={css.title}>Top-20 today</h2>
       {items.length > 0 && <MovieList items={items} />}
       {loading && <Loader />}
-      {error && <p>...Movies load failed</p>}
+      {error && <p>Load failed...</p>}
     </div>
   );
 };

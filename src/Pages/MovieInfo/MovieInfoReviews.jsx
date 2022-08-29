@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { MovieReviews } from 'APIServise';
-import { ReviewsComponent } from '../../components/ReviewsComponent';
+import { ReviewsComponent } from '../../components/Reviews/ReviewsComponent';
+import css from '../MovieInfo/MovieInfoReviews.module.css';
 
 const MovieInfoReviews = () => {
   const [state, setState] = useState({
@@ -49,7 +50,9 @@ const MovieInfoReviews = () => {
     items.length > 0 ? (
       <ReviewsComponent items={items} />
     ) : (
-      <p>We don`t have any reviews for this movie :(</p>
+      <p className={css.no_reviews_message}>
+        We don`t have any reviews for this movie :(
+      </p>
     );
 
   return <div className="container">{reviews}</div>;

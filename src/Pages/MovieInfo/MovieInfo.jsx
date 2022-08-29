@@ -64,9 +64,9 @@ const MovieInfo = () => {
       </button>
       <ul>
         {items.map(item => (
-          <li key={id}>
+          <li key={item.id}>
             <img
-              width="300px"
+              width="400px"
               src={
                 item.poster_path
                   ? `https://image.tmdb.org/t/p/w500${item.poster_path}`

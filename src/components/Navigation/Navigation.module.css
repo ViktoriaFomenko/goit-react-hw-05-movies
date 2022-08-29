@@ -21,6 +21,7 @@
   border-radius: 10px;
 }
 
-.link.active {
+.link.active,
+.link:hover {
   background-color: rgb(33, 154, 223);
 }
