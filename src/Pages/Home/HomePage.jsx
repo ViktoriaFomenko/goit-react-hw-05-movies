@@ -4,6 +4,8 @@ import { FetchTrending } from 'APIServise';
 import { Loader } from 'components/Loader/Loader';
 import { MovieList } from 'components/MovieList/MovieList';
 import css from '../Home/HomePage.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const [state, setState] = useState({
@@ -30,10 +32,7 @@ const Home = () => {
           };
         });
       } catch (error) {
-        setState(prevState => ({
-          ...prevState,
-          error,
-        }));
+        setState(toast.error('Something went wrong...'));
       } finally {
         setState(prevState => {
           return {
@@ -47,14 +46,14 @@ const Home = () => {
     Trending();
   }, []);
 
-  const { items, loading, error } = state;
+  const { items, loading } = state;
 
   return (
     <div>
+      <ToastContainer autoClose={2000} position="top-center" closeOnClick />
       <h2 className={css.title}>Top-20 today</h2>
       {items.length > 0 && <MovieList items={items} />}
       {loading && <Loader />}
-      {error && <p>Load failed...</p>}
     </div>
   );
 };
